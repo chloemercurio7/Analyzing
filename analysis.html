@@ -54,6 +54,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Analyzing US Census Data by Chloe Mercurio</p>
+<p>Every ACS request comes down to three choices: the <strong>geographic level</strong> (county here, but census tract, place, or state are also available), the <strong>variables</strong> (Census table codes like <code>B19013_001</code> for median household income), and the <strong>year</strong>. For the ACS, <code>year = 2020</code> retrieves the 2016–2020 5-year estimates, pooled across five years so even small counties have reliable numbers.</p>
+<p>Every county arrives with a <code>GEOID</code> (its FIPS code), a <code>NAME</code>, the <code>variable</code> code, an <code>estimate</code>, and a margin of error (<code>moe</code>). The <code>estimate</code> is the survey’s best guess. The <code>moe</code> is the half-width of its 90% confidence interval.</p>
+<p><code>income_tx</code> contains 254 Texas counties, each with an income estimate, its margin of error, and the polygon used to draw it on the map.</p>
+<p>After a successful render, <code>analysis_cache/</code> sits next to <code>analysis_files/</code> and holds the saved <code>income_tx</code>, including its polygons. Later renders can use the cached result instead of repeating the Census API call and boundary download.</p>
 
 </main>
 <!-- /main column -->

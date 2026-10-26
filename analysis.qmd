@@ -45,6 +45,25 @@ ggplot(income_tx) +
   )
 ```
 
+```{r}
+ggplot(income_tx) +
+  geom_sf(aes(fill = estimate), color = "white", linewidth = 0.1) +
+  scale_fill_viridis_c(
+    option = "cividis",
+    labels = scales::label_dollar(),
+    name = "Median household income\n(USD)"
+  ) +
+  labs(
+    title = "Median Household Income by Texas County (Cividis)",
+    caption = "Source: U.S. Census Bureau, 2016-2020 American Community Survey (ACS) 5-year estimates."
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(face = "bold"),
+    plot.caption = element_text(color = "gray40", hjust = 0)
+  )
+```
+
 Every county arrives with a `GEOID` (its FIPS code), a `NAME`, the `variable` code, an `estimate`, and a margin of error (`moe`). The `estimate` is the survey's best guess. The `moe` is the half-width of its 90% confidence interval.
 
 `income_tx` contains 254 Texas counties, each with an income estimate, its margin of error, and the polygon used to draw it on the map.

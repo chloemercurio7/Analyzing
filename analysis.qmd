@@ -1,1 +1,32 @@
+---
+execute:
+  echo: false
+---
+
 Analyzing US Census Data by Chloe Mercurio
+
+```{r}
+#| message: false
+library(tidyverse)
+library(tidycensus)
+library(sf)
+```
+
+Every ACS request comes down to three choices: the **geographic level** (county here, but census tract, place, or state are also available), the **variables** (Census table codes like `B19013_001` for median household income), and the **year**. For the ACS, `year = 2020` retrieves the 2016–2020 5-year estimates, pooled across five years so even small counties have reliable numbers.
+
+```{r}
+#| message: false
+income_tx <- get_acs(
+  geography = "county",
+  variables = "B19013_001",
+  state = "TX",
+  year = 2020,
+  geometry = TRUE
+)
+```
+
+```{r}
+income_tx
+```
+
+Every county arrives with a `GEOID` (its FIPS code), a `NAME`, the `variable` code, an `estimate`, and a margin of error (`moe`). The `estimate` is the survey's best guess. The `moe` is the half-width of its 90% confidence interval.

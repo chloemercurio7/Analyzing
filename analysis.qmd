@@ -27,3 +27,5 @@ income_tx <- get_acs(
 ```
 
 Every county arrives with a `GEOID` (its FIPS code), a `NAME`, the `variable` code, an `estimate`, and a margin of error (`moe`). The `estimate` is the survey's best guess. The `moe` is the half-width of its 90% confidence interval.
+
+`income_tx` contains 254 Texas counties, each with an income estimate, its margin of error, and the polygon used to draw it on the map.

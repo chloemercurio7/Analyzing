@@ -48,6 +48,21 @@ age_ca <- get_acs(
 ```
 
 ```{r}
+age_ca |>
+  select(NAME, variable, estimate) |>
+  pivot_wider(names_from = variable, values_from = estimate) |>
+  ggplot(aes(x = B01003_001, y = B01002_001)) +
+  geom_point(color = "steelblue", alpha = 0.8) +
+  scale_x_log10(labels = scales::label_comma()) +
+  labs(
+    title = "County Population and Median Age in California",
+    x = "Population (log scale)",
+    y = "Median age (years)"
+  ) +
+  theme_minimal()
+```
+
+```{r}
 edu_state |>
   filter(variable %in% c("B15003_022", "B15003_023", "B15003_024", "B15003_025")) |>
   group_by(GEOID, NAME) |>

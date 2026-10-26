@@ -16,6 +16,7 @@ Every ACS request comes down to three choices: the **geographic level** (county 
 
 ```{r}
 #| message: false
+#| cache: true
 income_tx <- get_acs(
   geography = "county",
   variables = "B19013_001",
@@ -23,10 +24,6 @@ income_tx <- get_acs(
   year = 2020,
   geometry = TRUE
 )
-```
-
-```{r}
-income_tx
 ```
 
 Every county arrives with a `GEOID` (its FIPS code), a `NAME`, the `variable` code, an `estimate`, and a margin of error (`moe`). The `estimate` is the survey's best guess. The `moe` is the half-width of its 90% confidence interval.
